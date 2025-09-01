@@ -1,30 +1,33 @@
-#  End-to-End Self-Driving Perception
+# End-to-End Self-Driving Perception
 
-This project demonstrates a **complete perception pipeline** for self-driving cars by combining three key tasks:
+This project demonstrates an **integrated perception pipeline** for autonomous driving, combining **object detection**, **traffic light color classification**, and **road segmentation** into a single framework. The goal is to produce a **unified annotated view** of the driving scene that highlights **cars**, **traffic lights (with state labels)**, and the **drivable road area**.  
 
-- **Object Detection** with [YOLOv8](https://github.com/ultralytics/ultralytics)  
-  → Detects cars and traffic lights in road images.  
-- **Traffic Light Classification**  
-  → Identifies the color/state (red, yellow, green) of each detected traffic light.  
-- **Road Segmentation** with [SegFormer](https://huggingface.co/nvidia/segformer-b0-finetuned-cityscapes-1024-1024)  
-  → Marks the drivable area of the road with a teal overlay.  
-
-All results are combined into a **single annotated image** showing:  
- - Cars (white boxes)  
- - Traffic lights with colored labels  
- - Drivable road area overlay  
+By merging these tasks, the system provides a foundation for downstream decision-making and control in self-driving cars.
 
 ---
 
-##  Example Output
-Cars, traffic lights (red/yellow/green), and drivable road area:
+## Introduction
 
-![Example Output](artifacts/output.png)
+Modern self-driving systems rely on multiple perception modules that must operate together in real time.  
+This project builds a **complete perception stack** by connecting three core components:
+
+1. **YOLOv8 (Detection)** – Detects objects of interest, specifically **cars** and **traffic lights**.  
+2. **Traffic Light Color Classifier** – Determines the **state** of each traffic light (red, yellow, green) using color heuristics or a small CNN.  
+3. **SegFormer (Segmentation)** – Identifies the **drivable road surface** with transformer-based semantic segmentation.  
+
+The outputs of these models are merged into a **single annotated image** that provides:  
+- Bounding boxes for **cars**  
+- Colored bounding boxes + labels for **traffic lights**  
+- Teal overlay for the **drivable road area**
+
+This pipeline demonstrates how **detection, classification, and segmentation** can be integrated to improve scene understanding for autonomous navigation.
 
 ---
 
-##  Features
-- **YOLOv8 Detection** – robust real-time object detection.  
-- **Traffic Light Color Classification** – HSV-based heuristic or CNN classifier.  
-- **SegFormer Segmentation** – transformer-based segmentation model for urban scenes.  
-- **Unified Overlay Visualization** – combines detection, classification, and segmentation.  
+## Features
+
+- **Real-time object detection** with YOLOv8.  
+- **Traffic light state awareness** (red/yellow/green).  
+- **Transformer-based segmentation** (SegFormer) for robust road marking.  
+- **Unified visualization** of all outputs in one image.  
+- Easy-to-extend pipeline for other object classes or segmentation tasks.  
